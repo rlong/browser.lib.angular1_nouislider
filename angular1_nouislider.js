@@ -111,10 +111,11 @@ var angular1_nouislider;
                     restrict: 'A',
                     scope: {
                         ngModel: '=',
-                        noUiSliderConfig: '=',
-                    },
+                        noUiSliderConfig: '='
+                    }
                 };
             }]);
     }
     angular1_nouislider.setup = setup;
 })(angular1_nouislider || (angular1_nouislider = {}));
+//# sourceMappingURL=angular1_nouislider.js.map
