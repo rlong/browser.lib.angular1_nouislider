@@ -1,7 +1,6 @@
 /**
  * Created by local-rlong on 27/08/2016.
  */
-/// <reference path="../../../typings/index.d.ts" />
 /// <reference path="../angular1_nouislider.ts" />
 var mcRemote = angular.module('McRemote', []);
 mcRemote.controller('index', ["$http", "$q", "$scope", function ($http, $q, $scope) {

@@ -4,7 +4,6 @@
 
 
 
-/// <reference path="../../../typings/index.d.ts" />
 /// <reference path="../angular1_nouislider.ts" />
 
 
