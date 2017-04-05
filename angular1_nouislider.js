@@ -1,6 +1,7 @@
-/**
- * Created by local-rlong on 27/08/2016.
- */
+// Copyright (c) 2017 Richard Long
+//
+// Released under the MIT license ( http://opensource.org/licenses/MIT )
+//
 var angular1_nouislider;
 (function (angular1_nouislider) {
     function setup(module) {
@@ -25,7 +26,6 @@ var angular1_nouislider;
                         // console.log( scope );
                         var noUiSliderConfig = scope['noUiSliderConfig'];
                         var sliderValue = scope['ngModel'];
-                        // console.log( ngModelCtrl );
                         // ngModelCtrl.$viewChangeListeners.push(function() {
                         //     scope.$eval(attrs.ngChange);
                         // });
@@ -106,16 +106,33 @@ var angular1_nouislider;
                             // console.log( newValue );
                             slider.set(newValue);
                         });
+                        {
+                            var ngMax = scope['ngMax'];
+                            if ('undefined' == typeof ngMax) {
+                                console.log("'undefined' == typeof ngMax");
+                            }
+                            else {
+                                scope.$watch("ngMax", function (newValue, oldValue) {
+                                    console.log(newValue);
+                                    // vvv http://stackoverflow.com/questions/25772170/nouislider-update-range-on-demand
+                                    noUiSliderConfig.range.max = parseInt(newValue);
+                                    slider.updateOptions(noUiSliderConfig);
+                                    // ^^^ http://stackoverflow.com/questions/25772170/nouislider-update-range-on-demand
+                                });
+                            }
+                        }
                     },
                     require: '^ngModel',
                     restrict: 'A',
                     scope: {
+                        // `=`: bind to object passed, `&`: pass method, `@`: store string
+                        ngMax: '=?',
+                        min: '=?',
                         ngModel: '=',
-                        noUiSliderConfig: '='
-                    }
+                        noUiSliderConfig: '=',
+                    },
                 };
             }]);
     }
     angular1_nouislider.setup = setup;
 })(angular1_nouislider || (angular1_nouislider = {}));
-//# sourceMappingURL=angular1_nouislider.js.map

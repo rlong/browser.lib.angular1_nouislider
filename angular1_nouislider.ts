@@ -1,6 +1,7 @@
-/**
- * Created by local-rlong on 27/08/2016.
- */
+// Copyright (c) 2017 Richard Long
+//
+// Released under the MIT license ( http://opensource.org/licenses/MIT )
+//
 
 
 declare var noUiSlider: any;
@@ -36,8 +37,6 @@ namespace angular1_nouislider {
                     let noUiSliderConfig = scope['noUiSliderConfig'];
                     let sliderValue = scope['ngModel'];
 
-                    // console.log( ngModelCtrl );
-
                     // ngModelCtrl.$viewChangeListeners.push(function() {
                     //     scope.$eval(attrs.ngChange);
                     // });
@@ -47,8 +46,6 @@ namespace angular1_nouislider {
                     //     ngModelCtrl.$setViewValue(item);
                     // }
                     // ^^^ http://stackoverflow.com/questions/24754005/how-to-implement-an-ng-change-for-a-custom-directive
-
-
 
 
                     // console.log( sliderValue  );
@@ -149,17 +146,35 @@ namespace angular1_nouislider {
                         }
                     );
 
+                    {
+
+                        let ngMax = scope['ngMax'];
+                        if ('undefined' == typeof ngMax ) {
+
+                            console.log( "'undefined' == typeof ngMax" );
+                        } else {
+                            scope.$watch( "ngMax", function (newValue: string, oldValue) {
+
+                                console.log( newValue );
+                                // vvv http://stackoverflow.com/questions/25772170/nouislider-update-range-on-demand
+                                noUiSliderConfig.range.max = parseInt(newValue);
+                                slider.updateOptions(noUiSliderConfig);
+                                // ^^^ http://stackoverflow.com/questions/25772170/nouislider-update-range-on-demand
+                            });
+                        }
+                    }
+
 
                 },
                 require: '^ngModel', // ^ = look on parent, ? = don't raise an error if not found
                 restrict: 'A', // A = attribute, E = element, C = class, M = comment
                 scope: {
+                    // `=`: bind to object passed, `&`: pass method, `@`: store string
+                    ngMax: '=?',
+                    min: '=?',
                     ngModel: '=',
                     noUiSliderConfig: '=',
-                    //updateCallback: '&'
-                    // sliderStart: '=' // = = bind to object passed, & = pass method, @ = store string
                 },
-                // template: "<div>hey hey</div>"
 
             };
 

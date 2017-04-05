@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="McRemote">
+<html lang="en" ng-app="Sample">
 <head>
     <meta charset="UTF-8">
     <title>nouislider</title>
@@ -16,15 +16,20 @@
 
 <body ng-controller="index">
 
-    <br>
-
-    <input type="text" ng-model="sliderValue"/>
+<h1>Minimum/Maximum Sample</h1>
 
     <br>
+
+    range: <input type="text" ng-model="sliderValue"/>
+<br>
+    max: <input type="text" ng-model="max"/>
+
+
+    <br>
     <br>
 
 
-    <div nouislider ng-model="sliderValue" no-ui-slider-config="noUiSliderConfig" ng-change="onModelChange()">
+    <div nouislider ng-model="sliderValue" ng-max="max" no-ui-slider-config="noUiSliderConfig" ng-change="onModelChange()">
     </div>
 
     <br>

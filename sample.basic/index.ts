@@ -1,6 +1,7 @@
-/**
- * Created by local-rlong on 27/08/2016.
- */
+// Copyright (c) 2017 Richard Long
+//
+// Released under the MIT license ( http://opensource.org/licenses/MIT )
+//
 
 
 
@@ -8,7 +9,7 @@
 
 
 
-var mcRemote= angular.module('McRemote', []);
+var mcRemote= angular.module('Sample', []);
 
 
 

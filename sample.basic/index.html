@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Sample">
+<head>
+    <meta charset="UTF-8">
+    <title>nouislider</title>
+
+    <link href="../../../node_modules/nouislider/distribute/nouislider.min.css" rel="stylesheet">
+
+    <script src="../../../node_modules/angular/angular.js"></script>
+    <script src="../../../node_modules/nouislider/distribute/nouislider.min.js"></script>
+
+    <script src="../angular1_nouislider.js"></script>
+    <script src="index.js"></script>
+
+</head>
+
+<body ng-controller="index">
+
+<h1>Basic Sample</h1>
+    <br>
+
+    range: <input type="text" ng-model="sliderValue"/>
+
+    <br>
+    <br>
+
+
+    <div nouislider ng-model="sliderValue" no-ui-slider-config="noUiSliderConfig" ng-change="onModelChange()">
+    </div>
+
+    <br>
+    <br>
+
+    <!--<nouislider  ng-model="sliderValue" no-ui-slider-config="noUiSliderConfig">-->
+    <!--</nouislider>-->
+
+
+</body>
+</html>
