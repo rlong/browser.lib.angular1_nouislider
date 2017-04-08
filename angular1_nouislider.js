@@ -100,39 +100,36 @@ var angular1_nouislider;
                             ngModelCtrl.$setViewValue(value); // http://stackoverflow.com/questions/24754005/how-to-implement-an-ng-change-for-a-custom-directive
                         });
                         scope.$watch("ngModel", function (newValue, oldValue) {
+                            console.log(newValue);
                             if (dragging) {
                                 return;
                             }
-                            // console.log( newValue );
                             slider.set(newValue);
                         });
-                        {
-                            var ngMax = scope['ngMax'];
-                            if ('undefined' == typeof ngMax) {
-                                console.log("'undefined' == typeof ngMax");
+                        scope.$watch("ngMax", function (newValue, oldValue) {
+                            var nNewValue = parseInt(newValue);
+                            if (isNaN(nNewValue)) {
                             }
                             else {
-                                scope.$watch("ngMax", function (newValue, oldValue) {
-                                    console.log(newValue);
-                                    // vvv http://stackoverflow.com/questions/25772170/nouislider-update-range-on-demand
-                                    noUiSliderConfig.range.max = parseInt(newValue);
-                                    slider.updateOptions(noUiSliderConfig);
-                                    // ^^^ http://stackoverflow.com/questions/25772170/nouislider-update-range-on-demand
-                                });
+                                console.log(newValue);
+                                console.log(slider);
+                                // vvv http://stackoverflow.com/questions/25772170/nouislider-update-range-on-demand
+                                noUiSliderConfig.range.max = nNewValue;
+                                slider.updateOptions(noUiSliderConfig);
                             }
-                        }
+                        });
                     },
                     require: '^ngModel',
                     restrict: 'A',
                     scope: {
                         // `=`: bind to object passed, `&`: pass method, `@`: store string
                         ngMax: '=?',
-                        min: '=?',
                         ngModel: '=',
-                        noUiSliderConfig: '=',
-                    },
+                        noUiSliderConfig: '='
+                    }
                 };
             }]);
     }
     angular1_nouislider.setup = setup;
 })(angular1_nouislider || (angular1_nouislider = {}));
+//# sourceMappingURL=angular1_nouislider.js.map

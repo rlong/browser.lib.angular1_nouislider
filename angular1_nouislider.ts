@@ -136,34 +136,30 @@ namespace angular1_nouislider {
 
                     scope.$watch( "ngModel", function (newValue, oldValue) {
 
-                            if( dragging ) {
+                        console.log( newValue );
 
-                                return;
-                            }
+                        if( dragging ) {
 
-                            // console.log( newValue );
-                            slider.set( newValue );
+                            return;
                         }
-                    );
+                        slider.set( newValue );
+                    });
 
-                    {
+                    scope.$watch( "ngMax", function (newValue: string, oldValue) {
 
-                        let ngMax = scope['ngMax'];
-                        if ('undefined' == typeof ngMax ) {
-
-                            console.log( "'undefined' == typeof ngMax" );
+                        let nNewValue = parseInt(newValue);
+                        if( isNaN(nNewValue)) {
+                            // no-op
                         } else {
-                            scope.$watch( "ngMax", function (newValue: string, oldValue) {
 
-                                console.log( newValue );
-                                // vvv http://stackoverflow.com/questions/25772170/nouislider-update-range-on-demand
-                                noUiSliderConfig.range.max = parseInt(newValue);
-                                slider.updateOptions(noUiSliderConfig);
-                                // ^^^ http://stackoverflow.com/questions/25772170/nouislider-update-range-on-demand
-                            });
+                            console.log( newValue );
+                            console.log( slider );
+                            // vvv http://stackoverflow.com/questions/25772170/nouislider-update-range-on-demand
+                            noUiSliderConfig.range.max = nNewValue;
+                            slider.updateOptions(noUiSliderConfig);
+                            // ^^^ http://stackoverflow.com/questions/25772170/nouislider-update-range-on-demand
                         }
-                    }
-
+                    });
 
                 },
                 require: '^ngModel', // ^ = look on parent, ? = don't raise an error if not found
@@ -171,7 +167,6 @@ namespace angular1_nouislider {
                 scope: {
                     // `=`: bind to object passed, `&`: pass method, `@`: store string
                     ngMax: '=?',
-                    min: '=?',
                     ngModel: '=',
                     noUiSliderConfig: '=',
                 },
